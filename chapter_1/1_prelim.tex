@@ -104,7 +104,8 @@ geodesic.
 \end{figure}
 \begin{example}[Graph metric] The shortest path on graphs (for 
 example a social network graph) forms a valid distance function. The
-distance is just the smallest number of edges between two vertices.
+distance is just the smallest number of edges between two vertices, 
+and defined as $\infty$ for vertices that cannot reach each other.
 \end{example}
 \begin{remark}
 A metric space isn't always a Euclidean space. So, we cannot always
@@ -129,4 +130,34 @@ In other words, $T$ $\epsilon$-covers $S$ if $\sup_{s\in S}
 cube $\{-1,1\}^d$ the $\ell_\infty$ distance. What is a good 1-cover?
 $\frac{1}{2}$-cover? $\frac{9}{10}$-cover?
 \end{exercise}
+
+\begin{enumerate}[(i)]
+	\item $S$ is a $\epsilon$-cover of $S$ for all $\epsilon \geq 0$,
+	as for every element $x_i \in S$, $\rho(x_i, x_i) = 0 \leq 
+	\epsilon$.
+	
+	\item It is clear that a good 1-cover for $S = \{-1, 1\}^d$ with 
+	$\rho = \ell_\infty$ would be the set $\{\vec{0}\}$. However, for 
+	an $\epsilon$-cover with $\epsilon < 1$, the smallest cover is of 
+	size $2^d$. The proof is as follows:
+	
+	\begin{proof}
+		Let $T'$ be an $\epsilon$-cover of $S$ that contains less than
+		$2^d$ elements. Then, $\exists\ x, x' \in S, t \in T$ such that 
+		both $\rho(x, t) < \epsilon$ and $\rho(x', t) < epsilon$. We 
+		know that the distance between any two vertices of the unit 
+		hypercube is equal to 2. However, when we apply the triangle
+		inequality:
+		\begin{align*}
+			\rho(x, x') & = 2\\
+			\rho(x, t) + \rho(x', t) & \geq \rho(x, x')\\
+			& \geq 2
+		\end{align*}
+		Which implies that either $\rho(x, t) \geq 1$ or $\rho(x', t) 
+		\geq 1$, contradicting our earlier claim that both $\rho(x, t) 
+		< \epsilon$ and $\rho(x', t) < epsilon$. Thus, the smallest
+		possible $\epsilon$-cover of $S$ for $\epsilon < 1$ is of size
+		$2^d$.
+	\end{proof}
+\end{enumerate}
 
